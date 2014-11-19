@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :signed_in_user, only: [:edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -20,11 +20,19 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    # if @user.save
+    #   sign_in @user
+    #   flash[:success] = "Welcome to calQuotes!"
+    #   redirect_to @user
+    # else
+    #   render 'new'
+    # end
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        sign_in @user
+        format.html { redirect_to users_path, notice: 'User was successfully created.' }
+        format.json { render :index, status: :created, location: @user }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -64,6 +72,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone_number, :street_address, :city, :state, :zip_code)
     end
 end
