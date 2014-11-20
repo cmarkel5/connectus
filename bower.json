@@ -1,0 +1,28 @@
+{
+  "lib": {
+    "name": "connectus generated lib assets",
+    "dependencies": {
+      // "threex"      : "git@github.com:rharriso/threex.git",
+      // "gsvpano.js"  : "https://github.com/rharriso/GSVPano.js/blob/master/src/GSVPano.js"
+      "angular": "~1.2.0",
+      "json3": "^3.3.0",
+      "es5-shim": "^4.0.0",
+      "angular-resource": "~1.2.0",
+      "angular-cookies": "~1.2.0",
+      "angular-sanitize": "~1.2.0",
+      "angular-animate": "~1.2.0",
+      "angular-ui-router": "latest",
+      "bootstrap-sass-official": "latest",
+      "angular-ui-router.stateHelper": "~1.1.0",
+      "angular-bootstrap": "0.11.0",
+      "ui-router-extras": "~0.0.10",
+      "angular-google-maps": "~2.0.8"
+    }
+  },
+  "vendor": {
+    "name": "bower-rails generated vendor assets",
+    "dependencies": {
+      // "three.js"    : "https://raw.github.com/mrdoob/three.js/master/build/three.js"
+    }
+  }
+}
