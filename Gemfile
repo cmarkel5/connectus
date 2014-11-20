@@ -24,6 +24,16 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'geocoder'
+gem 'bower-rails'
+gem 'angularjs-rails'
+# gem 'angular-rails-templates'
+
+gem 'autoprefixer-rails'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem "twitter-bootstrap-rails"
+gem 'font-awesome-sass'
+
+gem 'rack-cors', :require => 'rack/cors'
 
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

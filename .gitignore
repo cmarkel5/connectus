@@ -16,3 +16,4 @@
 /tmp
 .DS_store
 database.yml
+lib/assets/bower_components

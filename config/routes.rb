@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  
+  root 'application#index'
+  get "*path.html" => "application#index", :layout => 0
+  get '*path' => 'application#index'
+
   resources :users, except: [:show]
   resources :sessions, only: [:new, :create, :destroy]
 
@@ -6,12 +11,14 @@ Rails.application.routes.draw do
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/welcome', to: 'static_pages#welcome', via: 'get'
+  # root 'static_pages#welcome'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'static_pages#welcome'
+  # 
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
