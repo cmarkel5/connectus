@@ -15,7 +15,7 @@
 //= require angular
 //= require angular-animate
 //= require angular-ui-router
-//= require angular-rails-templates
-//= require angular-google-maps
+//= require lodash/dist/lodash.compat.js
+//= require angular-google-maps/dist/angular-google-maps.js
 //= require_tree .
 //= require_tree ../templates
