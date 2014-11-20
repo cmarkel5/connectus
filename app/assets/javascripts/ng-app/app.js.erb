@@ -4,7 +4,8 @@ angular
         'ui.router',
         'uiGmapgoogle-maps'
     ])
-    .config(function ($stateProvider, $urlRouterProvider, $locationProvider, uiGmapGoogleMapApiProvider) {
+    .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'uiGmapGoogleMapApiProvider',
+            function ($stateProvider, $urlRouterProvider, $locationProvider, uiGmapGoogleMapApiProvider) {
         /**
        * Routes and States
        */
@@ -31,4 +32,4 @@ angular
             v: '3.17',
             libraries: 'weather,geometry,visualization'
       });
-   });   
+   }]);   

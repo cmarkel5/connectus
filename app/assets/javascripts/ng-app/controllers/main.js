@@ -8,7 +8,8 @@
  * Controller of the connectusAngular2App
  */
 angular.module('connectusApp')
-  .controller('MainCtrl', function ($scope, uiGmapGoogleMapApi) {
+  .controller('MainCtrl', ['$scope', 'uiGmapGoogleMapApi',
+              function ($scope, uiGmapGoogleMapApi) {
     
     console.log('MainCtrl is alive!');
 
@@ -61,4 +62,4 @@ angular.module('connectusApp')
     }
   ]
 
-  });
+  }]);
