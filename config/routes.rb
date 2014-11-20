@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   
-  root 'application#index'
-  get "*path.html" => "application#index", :layout => 0
-  get '*path' => 'application#index'
+  root 'static_pages#welcome'
+
+  match '/app', to: 'application#index', via: 'get'
 
   resources :users, except: [:show]
   resources :sessions, only: [:new, :create, :destroy]
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
-  match '/welcome', to: 'static_pages#welcome', via: 'get'
+  
   # root 'static_pages#welcome'
 
   # The priority is based upon order of creation: first created -> highest priority.

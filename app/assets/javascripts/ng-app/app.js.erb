@@ -9,15 +9,15 @@ angular
        * Routes and States
        */
       $stateProvider
-          .state('home', {
-              url: '/',
-              templateUrl: '<%= asset_path "home.html" %>',
-              controller: 'HomeCtrl'
-          })
           .state('main', {
-              url: '/main',
+              url: '/',
               templateUrl: '<%= asset_path "main.html" %>',
               controller: 'MainCtrl'
+          })
+          .state('about', {
+              url: '/about',
+              templateUrl: '<%= asset_path "about.html" %>',
+              controller: 'AboutCtrl'
           });
 
       // default fall back route
