@@ -8,5 +8,7 @@ class ApplicationController < ActionController::Base
   def index
     @signup_path = 'blah'
   end
-
+  
+  def group
+  end
 end
