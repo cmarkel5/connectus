@@ -1,8 +1,8 @@
 angular.module("connectusApp")
-.controller("GroupCtrl", ['$scope', 'groupService', function ($scope, groupService) {
+.controller("GroupCtrl", ['$scope', 'groupService', 'placesService', function ($scope, groupService, placesService) {
 
    $scope.getUsers = function() {
-    groupService.getAll().success(function(data) {
+    groupService.getAllUsers().success(function(data) {
       $scope.userList = data;
     }).error(function() {
       alert('Something went wrong!');
@@ -11,43 +11,7 @@ angular.module("connectusApp")
 
   $scope.getUsers();
     
-  // $scope.userList = [
-  //   { name: "Amanda",
-  //     email: "a@gmail.com",
-  //     phone_number: 8042918214,
-  //     address: "105 sycamore place",
-  //     city: "Decatur",
-  //     state: "GA",
-  //     zip_code: 30030,
-  //     latitude: 0,
-  //     longitude: 0,
-  //     selected: false
-  //   },
-  //   { name: "Chris",
-  //     email: "c@gmail.com",
-  //     phone_number: 8042918215,
-  //     address: "1100 glenrose st se",
-  //     city: "Smyrna",
-  //     state: "GA",
-  //     zip_code: 30080,
-  //     latitude: 30,
-  //     longitude: 50,
-  //     selected: false
-  //   },
-  //   { name: "Gerry",
-  //     email: "g@gmail.com",
-  //     phone_number: 8042918215,
-  //     address: "1100 glenrose st se",
-  //     city: "Smyrna",
-  //     state: "GA",
-  //     zip_code: 30080,
-  //     latitude: 90,
-  //     longitude: 100,
-  //     selected: false
-  //   }
-
-  // ];
-  
+   
   $scope.selectedUsers = function() {
     //this line resets the userList so you can update correctly
     var users = $scope.userList;
@@ -58,41 +22,42 @@ angular.module("connectusApp")
     });
     //this function creates an array of just what you want.
 
-
-    console.log((JSON.stringify(users)));
-    /*alert(users)*/
-
     /*$scope.submitForm = function () {
       alert("send a request tonthe server: " + JSON.stringify(users));
      };*/
-      var length = users.length;
-      console.log(length);
-      
-     
-      var sumLatitude = _.reduce( users, function( memory, user) {
-        return memory + user.latitude;
-      }, 0 );
-      
-      var averageLatitude = sumLatitude/length;
-      console.log(averageLatitude);
-    
-      var sumLongitude = _.reduce( users, function( memory, user) {
-        return memory + user.longitude;
-      }, 0 );
-      
-      var averageLongitude = sumLongitude/length;
+    var length = users.length;
    
-     console.log(averageLongitude);
-      
-      $scope.midPoint = averageLatitude + "," + averageLongitude 
-       
-      console.log($scope.midPoint);
+    var sumLatitude = _.reduce( users, function( memory, user) {
+      return memory + user.latitude;
+    }, 0 );
+    
+    var averageLatitude = sumLatitude/length;
+  
+    var sumLongitude = _.reduce( users, function( memory, user) {
+      return memory + user.longitude;
+    }, 0 );
+    
+    var averageLongitude = sumLongitude/length;
+
+    $scope.midPoint = averageLatitude + "," + averageLongitude;
+
+    $scope.getPlaces();
 
   };
 
-  var placesResults = placesHash.results;
+  $scope.getPlaces = function() {
+    placesService.getAllPlaces($scope.midPoint).success(function(data) {
+      $scope.placesHash = data;
+    }).error(function() {
+      alert('Something went wrong!');
+    });
+  };
+
+
+  // var placesResults = $scope.placesHash;
   
-  $scope.places = _.filter(placesResults, function(place) {
+  //move this filter to rails side in places controller
+  $scope.places = _.filter($scope.placesHash, function(place) {
       return place.opening_hours.open_now === true && !_.contains(place.types, "lodging");
   });
   

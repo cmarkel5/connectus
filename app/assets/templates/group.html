@@ -20,9 +20,11 @@
     </table>
     <input type="submit" ng-click="selectedUsers()">
     </form>
+
+
     <h1 ng-show="usersAverageLatitude"></h1>
     <table>
-      <tr ng-repeat="place in places">
+        <tr ng-repeat="place in placesHash">
         <td>
           {{place.name}}
         </td>

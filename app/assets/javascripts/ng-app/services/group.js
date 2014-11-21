@@ -1,12 +1,12 @@
 angular.module('connectusApp')
-.service('groupService', function($http) {
+.service('groupService', ["$http", function($http) {
 
   var that = this;
   var usersUrl = '/users';
 
   that.users = [];
 
-  this.getAll = function() {
+  this.getAllUsers = function() {
     return $http.get(usersUrl + '.json').success(function(data) {
       that.users = data;
     });
@@ -29,4 +29,4 @@ angular.module('connectusApp')
   //   });
   // };
 
-});
+}]);
