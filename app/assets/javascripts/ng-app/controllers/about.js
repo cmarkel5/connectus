@@ -1,6 +1,6 @@
 angular.module('connectusApp')
-    .controller('HomeCtrl',
+    .controller('AboutCtrl',
                 ['$scope',
                 function ($scope) {
-        console.log('HomeCtrl is alive!');
+        console.log('AboutCtrl is alive!');
     }]);

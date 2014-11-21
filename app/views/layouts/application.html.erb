@@ -10,8 +10,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= render 'layouts/navigation' %>
+<% if !signed_in? %>
+  <%= render 'layouts/navigation' %>
+<% end %>
 
 <%= yield %>
 
