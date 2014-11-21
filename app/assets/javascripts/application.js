@@ -19,3 +19,4 @@
 //= require angular-google-maps/dist/angular-google-maps.js
 //= require_tree .
 //= require_tree ../templates
+
