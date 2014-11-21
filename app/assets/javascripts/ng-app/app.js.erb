@@ -19,6 +19,16 @@ angular
               url: '/',
               templateUrl: '<%= asset_path "group.html" %>',
               controller: 'GroupCtrl'
+          })
+          .state('about', {
+              url: '/about',
+              templateUrl: '<%= asset_path "about.html" %>',
+              controller: 'AboutCtrl'
+          })
+           .state('home', {
+              url: '/home',
+              templateUrl: '<%= asset_path "home.html" %>',
+              controller: 'HomeCtrl'
           });
 
 
