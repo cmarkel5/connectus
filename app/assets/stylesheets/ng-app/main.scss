@@ -4,7 +4,7 @@
   width: 700px;
   height: 400px;
 }
-
+/*
 .checkbox {
   width: 19px;
   height: 25px;
@@ -14,3 +14,28 @@
   clear: left;
   float: left;
 }
+*/
+.panel-heading {
+  border: 1px solid #6AA7D3;
+  border-left-width: 10px;
+  background-color: #C0C0C0;
+  color: #6AA7D3;
+}
+.panel-body {
+  font-size: 20px;
+ }
+ .lead {
+   font-size: 30px;
+   margin-bottom: 0px;
+ } 
+.place-details {
+    max-height: 100px;
+    transition: .8s;
+    overflow: hidden;
+}
+
+.place-details.hidden {
+    max-height: 0;
+}
+  
+  
