@@ -1,30 +1,51 @@
-<form name="groupForm" ng-submit="submitForm();">
-    <table class="table">
-      <thead>
-       <tr>
-        <th>Group</th>
-       </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="user in userList" user.selected = false>
-         <td>
-           <input type="checkbox" ng-model="user.selected" >
-         </td>
-         <td>{{user.name}}</td>
-        </tr>
-      </tbody>
-    </table>
-    <input type="submit" ng-click="selectedUsers()">
-    </form>
+
+<form class="col-md-4 col-lg-4" name="groupForm" ng-submit="submitForm();">
+  <div class="well" >
+  <table class="table">
+    <thead>
+     <tr>
+      <th><h3 class="text-center">Select Group</h3></th>
+     </tr>
+    </thead>
+    <tbody class="text-left">
+      <tr ng-repeat="user in userList" user.selected = false>
+       <td>
+         <input type="checkbox" class="styled" ng-model="user.selected" >
+       </td>
+       <td><h3>{{user.name}}</h3></td>
+      </tr>
+    </tbody>
+  </table>
+  <input type="submit" ng-click="selectedUsers()">
+</div>
+</form>
+
+  
 
 
-    <h1 ng-show="usersAverageLatitude"></h1>
-    <table>
+   <!--  <h1 ng-show="usersAverageLatitude"></h1> -->
+
+<form class="col-md-offset-2 col-lg-offset-2 col-md-6 col-lg-6 center" name="placeForm" ng-submit="submitForm();">
+  <div class="well" >
+  <table class="table">
+    <thead>
+     <tr>
+      <th><h3 class="text-center">Suggested Places</h3></th>
+     </tr>
+    </thead>
+    <tbody class="text-left">
         <tr ng-repeat="place in placesHash">
         <td>
-          {{place.name}}
-          {{place.vicinity}}
+        </td>
+        <td>
+          <button ng-click="">
+            <h2>{{place.name}}</h1>
+            <h4>{{place.vicinity}}</h4>
+          </button>
         </td>
       </tr>
-    </table>
-    <h1 ng-show="midPoint">MIDPOINT:{{midPoint}}</h1>
+    </tbody>
+  </table>
+  </div>
+</form>
+    <!-- <h1 ng-show="midPoint">MIDPOINT:{{midPoint}}</h1> -->
