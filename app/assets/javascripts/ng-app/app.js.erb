@@ -11,15 +11,16 @@ angular
        */
       $stateProvider
           .state('main', {
-              url: '/',
+              url: '/main',
               templateUrl: '<%= asset_path "main.html" %>',
               controller: 'MainCtrl'
           })
-          .state('about', {
-              url: '/about',
-              templateUrl: '<%= asset_path "about.html" %>',
-              controller: 'AboutCtrl'
+          .state('group', {
+              url: '/',
+              templateUrl: '<%= asset_path "group.html" %>',
+              controller: 'GroupCtrl'
           });
+
 
       // default fall back route
       $urlRouterProvider.otherwise('/');

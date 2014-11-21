@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root 'static_pages#welcome'
 
   match '/app', to: 'application#index', via: 'get'
+  match '/group', to: 'application#index', via: 'get'
+  match '/places', to: 'places#index', via: 'get'
 
   resources :users, except: [:show]
   resources :sessions, only: [:new, :create, :destroy]
