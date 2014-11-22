@@ -37,5 +37,10 @@
 .place-details.hidden {
     max-height: 0;
 }
-  
+.highlighted {
+   background: red;
+}
+li.highlighted:hover {
+  background: red;
+}
   
