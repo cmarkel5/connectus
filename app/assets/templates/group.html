@@ -1,5 +1,5 @@
 
-<form class="col-md-4 col-lg-4" name="groupForm" ng-submit="submitForm();">
+<form class="col-md-3 col-lg-3" name="groupForm" ng-submit="submitForm();">
   <div class="well" >
   <table class="table">
     <thead>
@@ -12,7 +12,7 @@
        <td>
          <input type="checkbox" class="styled" ng-model="user.selected" >
        </td>
-       <td><h3>{{user.name}}</h3></td>
+       <td><h4>{{user.name}}</h4></td>
       </tr>
     </tbody>
   </table>
@@ -51,23 +51,32 @@
     <!-- <h1 ng-show="midPoint">MIDPOINT:{{midPoint}}</h1> -->
 
 
+  <section ng-hide="selectedPlace">
+    <div class="col-md-3 col-lg-3 center well">  
+      <h1 class="text-center">Suggested Places:</h1> 
+      <div ng-repeat= "place in placesHash" class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <!-- <button class="place-button"> -->
+            <div ng-class="{ highlighted: place === selectedPlace }" ng-click="selectPlace(place);"class="panel-heading" role="tab" id="headingOne">
+              <h4>{{place.name}}</h4>
+            </div>
+         <!--  </button> -->
+        </div>
+      </div>
+    </div> 
+  </section>
 
-<div class="col-md-offset-2 col-lg-offset-2 col-md-6 col-lg-6 center well">  
-  <h1 class="text-center">Suggested Places:</h1> 
-  <div ng-repeat= "place in placesHash" class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-    <div class="panel panel-default">
-      <div class="panel-heading" role="tab" id="headingOne">
-       
-          <h4><a href="#/group" ng-click="showDetails = ! showDetails">{{place.name}}</a></h4>
-      
-      </div>
-      <div ng-class="{ 'hidden': ! showDetails }" id="collapseOne" class="place-details" role="tabpanel" aria-labelledby="headingOne">
-        <div class="panel-body">
-          <p>{{place.vicinity}}</p>
-          <button>text address</button>
-      </div>
+
+<section ng-show="selectedPlace">
+  <div class="col-md-3 col-lg-3 center well">    
+    <div class="panel-body">
+      <div ng-click="clearSelectedPlace();" class="close"><a href="">Back</a></div>
+      <p>{{selectedPlace.name}}</p>
+      <p>{{selectedPlace.vicinity}}</p>
+      <button>text address</button>
     </div>
   </div>
-</div> 
+</section>
+   
 
 

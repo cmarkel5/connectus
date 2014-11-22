@@ -60,6 +60,14 @@ angular.module("connectusApp")
   $scope.places = _.filter($scope.placesHash, function(place) {
       return place.opening_hours.open_now === true && !_.contains(place.types, "lodging");
   });
+
+  $scope.selectPlace = function(place) {
+    $scope.selectedPlace = place;
+  };
+
+  $scope.clearSelectedPlace = function() {
+    $scope.selectedPlace = null;
+  };
   
  
   

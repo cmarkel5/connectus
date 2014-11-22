@@ -7,7 +7,11 @@
       <p class="text-center"> Find a convenient place to meet halfway</p>
       </br>
       <div class = "form-button text-center">
-        <%= link_to "SIGN UP", signup_path, class: "btn btn-large btn-success" %>
+        <% if signed_in? %>
+          <%= link_to "Search", app_path, class: "btn btn-large btn-success" %>
+        <% else %>
+          <%= link_to "SIGN UP", signup_path, class: "btn btn-large btn-success" %>
+        <% end %>  
       </div>
       </br>
     </div>
