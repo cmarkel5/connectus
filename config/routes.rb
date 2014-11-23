@@ -2,9 +2,10 @@ Rails.application.routes.draw do
   
   root 'static_pages#welcome'
 
-  match '/app', to: 'application#index', via: 'get'
-  match '/group', to: 'application#index', via: 'get'
-  match '/places', to: 'places#index', via: 'get'
+  match '/app',     to: 'application#index',    via: 'get'
+  match '/group',   to: 'application#index',    via: 'get'
+  match '/places',  to: 'places#index',         via: 'get'
+  match '/texts',   to: 'texts#send_to_all',          via: 'get'
 
   resources :users, except: [:show]
   resources :sessions, only: [:new, :create, :destroy]
@@ -12,7 +13,7 @@ Rails.application.routes.draw do
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
-  match '/about',  to:  'static_pages#about',   via: 'get' 
+  match '/about',   to:  'static_pages#about',  via: 'get' 
   
   # root 'static_pages#welcome'
 
