@@ -6,6 +6,14 @@ angular
     ])
     .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'uiGmapGoogleMapApiProvider',
             function ($stateProvider, $urlRouterProvider, $locationProvider, uiGmapGoogleMapApiProvider) {
+        
+
+      uiGmapGoogleMapApiProvider.configure({
+            key: 'AIzaSyCJh6kHPa5K2u_7u3WZR4Df883_08BOfLc',
+            v: '3.17',
+            libraries: 'places'
+      });
+
         /**
        * Routes and States
        */
@@ -38,9 +46,5 @@ angular
       // enable HTML5 Mode for SEO
       // $locationProvider.html5Mode(true);
 
-      uiGmapGoogleMapApiProvider.configure({
-            key: 'AIzaSyCJh6kHPa5K2u_7u3WZR4Df883_08BOfLc',
-            v: '3.17',
-            libraries: 'weather,geometry,visualization'
-      });
+    
    }]);   
