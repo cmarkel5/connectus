@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   match '/app',     to: 'application#index',    via: 'get'
   match '/main',    to: 'application#index',    via: 'get'
-  match '/places',  to: 'places#index',         via: 'get'
+  match '/places',  to: 'places#search_places', via: 'get'
   match '/texts',   to: 'texts#send_to_all',    via: 'get'
 
   resources :users, except: [:show]
