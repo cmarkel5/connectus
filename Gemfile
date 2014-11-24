@@ -48,7 +48,7 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'spring',        group: :development
 
 gem 'twilio-ruby'
-gem 'yelp'
+gem 'yelp', require: 'yelp'
 
 
 # Use ActiveModel has_secure_password

@@ -32,7 +32,7 @@ angular.module("connectusApp")
   $scope.getAverageLatitude = function() {
     var sumLatitude = _.reduce( $scope.users, function( memory, user) {
     return memory + user.latitude;
-  }, 0 );
+    }, 0 );
     
     $scope.averageLatitude = sumLatitude/$scope.length;
   };  
@@ -49,11 +49,14 @@ angular.module("connectusApp")
     $scope.setLengthOfUsers();
     $scope.getAverageLatitude();
     $scope.getAverageLongitude();
-    $scope.midPoint = $scope.averageLatitude + "," + $scope.averageLongitude;
+    $scope.midPoint = {
+      latitude: $scope.averageLatitude,
+      longitude: $scope.averageLongitude
+    };
   };
   
   $scope.setMap = function() {
-  $scope.map = {
+    $scope.map = {
       center: {
         latitude: $scope.averageLatitude,
         longitude: $scope.averageLongitude
@@ -90,17 +93,9 @@ angular.module("connectusApp")
     $scope.setUsersMarkers();
   };
 
-  $scope.filterPlaces = function() {
-  //move this filter to rails side in places controller
-    $scope.places = _.filter($scope.placesHash, function(place) {
-      return !_.contains(place.types, "lodging");
-    });
-  };
-
   $scope.getPlaces = function() {
-    placesService.getAllPlaces($scope.midPoint).success(function(data) {
+    placesService.getAllPlaces($scope.getAverageLatitude, $scope.getAverageLongitude).success(function(data) {
       $scope.placesHash = data;
-      $scope.filterPlaces();
     }).error(function() {
       alert('Something went wrong!');
     });
