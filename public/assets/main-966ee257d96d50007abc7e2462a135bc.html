@@ -1,34 +1,30 @@
-<img src="http://i.imgur.com/iMlnpi4.png?1" id="background-main">
-
 <form class="groupForm" ng-submit="submitForm();">
-  <h3>Connect Group</h3>
   <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 text-center">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
       <div class="well" >
         <table class="table">
-          <tbody>
+          <thead>
+            <tr>
+            <th><h3 class="text-center">Select Group</h3></th>
+            </tr>
+          </thead>
+          <tbody class="text-left">
             <tr ng-repeat="user in userList" >
-             <td class="text-center">
+             <td>
                <input type="checkbox" class="styled" ng-model="user.selected" >
              </td>
              <td><h4>{{user.name}}</h4></td>
             </tr>
           </tbody>
         </table>
-        <button type="submit" class="btn btn-primary" ng-click="showPlaces()">Submit</button>
+        <input type="submit" ng-click="showPlaces()">
       </div>
     </div>
   </div>
 </form>
-
-    <span class="visible-xs">XS</span>
-    <span class="visible-sm">S</span>
-    <span class="visible-md">M</span>
-    <span class="visible-lg">L</span>
-
 <!-- two maps (hide and show) are necessary for markers to persist through different submission -->
-<div class="row">
-  <div class="col-xs-12 col-sm-4 col-sm-offset-2 col-md-2 col-md-offset-2 text-center" ng-hide="selectedPLace">
+
+  <div class="col-md-3 col-lg-3" ng-hide="selectedPLace">
     <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options">
       <ui-gmap-marker data-ng-repeat="marker in markerList" coords="marker.coords" idkey="marker.id">
         <ui-gmap-window options="windowOptions" closeClick="closeClick()">
@@ -54,10 +50,10 @@
       </ui-gmap-marker>
     </ui-gmap-google-map>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-xs-12 col-sm-4 col-sm-offset-2 col-md-2 col-md-offset-2 text-center" ng-show="selectedPLace">
+
+
+  <div class="col-md-3 col-lg-3" ng-show="selectedPLace">
     <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options">
       <ui-gmap-marker data-ng-repeat="marker in markerList" coords="marker.coords" idkey="marker.id">
         <ui-gmap-window options="windowOptions" closeClick="closeClick()">
@@ -82,37 +78,39 @@
       </ui-gmap-marker>
     </ui-gmap-google-map>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 text-center">  
-    <h1 ng-show="users" class="text-center well">Suggested Places:</h1>  
-    <div ng-hide="selectedPlace" ng-repeat= "place in placesHash" class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-      <div class="panel panel-default">
-        <button class="place-button">
-          <div ng-class="{ highlighted: place === selectedPlace }" ng-click="selectPlace(place);"class="panel-heading" role="tab" id="headingOne">
-            <h4>{{place.name}}</h4>
-          </div>
-        </button>
-      </div>
-    </div>
-  </div> 
-</div>
 
-<div class="row">
-  <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 text-center">
-    <div class="well" ng-show="selectedPlace">  
-      <div class="panel-body">
-        <div ng-click="clearSelectedPlace();" class="close"><a href="">Back</a></div>
-          <h2>{{selectedPlace.name}}</h2>
-          <p>yelp rating: {{selectedPlace.rating}}</p>
-          <p>{{selectedPlace.summary}}</p>
-          <h3>{{selectedPlace.address}}</h3>
-          <button ng-click="textAddress(selectedPlace.name, selectedPlace.address)">text address</button>
+
+ <section>
+    <div class="col-md-offset-3 col-lg-offset-3 col-md-3 col-lg-3 ">  
+    <h1 ng-show="users" ng-hide="selectedPlace" class="text-center well">Suggested Places:</h1>  
+      <div ng-hide="selectedPlace" ng-repeat= "place in placesHash" class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <button class="place-button">
+            <div ng-class="{ highlighted: place === selectedPlace }" ng-click="selectPlace(place);"class="panel-heading" role="tab" id="headingOne">
+              <h4>{{place.name}}</h4>
+            </div>
+          </button>
+        </div>
       </div>
+    </div> 
+  </section>
+
+
+<section ng-show="selectedPlace">
+  <div class="col-md-offset-3 col-lg-offset-3 col-md-3 col-lg-3 center well">    
+    <div class="panel-body">
+      <div ng-click="clearSelectedPlace();" class="close"><a href="">Back</a></div>
+      <h2>{{selectedPlace.name}}</h2>
+      <p>yelp rating: {{selectedPlace.rating}}</p>
+      <p>{{selectedPlace.summary}}</p>
+      <h3>{{selectedPlace.address}}</h3>
+     
+      <!-- <p>{{selectedPlace.url}}</p> -->
+    <!--   <p>is closed : {{selectedPlace.is_closed}}</p> -->
+       <button ng-click="textAddress(selectedPlace.name, selectedPlace.address)">text address</button>
     </div>
   </div>
-</div>
-
+</section>
    
 
