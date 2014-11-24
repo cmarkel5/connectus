@@ -63,6 +63,7 @@ angular.module("connectusApp")
       },
       zoom: 10
     };
+    $scope.options = {scrollwheel: false};
   };
 
   $scope.setMidPointMarker = function() {
@@ -100,34 +101,29 @@ angular.module("connectusApp")
       alert('Something went wrong!');
     });
   };
-  // $scope.setPlaceMarker = function() {
-  //   var latitude = $scope.selectedPlace.geometry.location.lat;
-  //   var longitude = $scope.selectedPlace.geometry.location.lng;
-  //   var id = $scope.selectedPlace.id;
-  //   var icon = $scope.selectedPlace.icon;
-  //   var name = $scope.selectedPlace.name;
+  $scope.setPlaceMarker = function() {
+    var coords = $scope.selectedPlace.coords.hash;
+    var id = $scope.selectedPlace.id;
+    var name = $scope.selectedPlace.name;
     
-  //   $scope.selectedPlaceMarker = [
-  //     { id: id,
-  //       coords: {
-  //         latitude: latitude,
-  //         longitude: longitude
-  //       },
-  //       icon: { url: icon,
-  //               scaledSize: {
-  //                 height: 40,
-  //                 width: 40
-  //               }
-  //             },
-  //       name: name
-  //     }
-  //   ];
-  // };
+    $scope.selectedPlaceMarker = [
+      {
+        id: id,
+        name: name,
+        coords: coords,
+        icon: { url:"http://www.clker.com/cliparts/r/J/F/7/y/4/placemark-th.png",
+                scaledSize: {
+                  height: 40,
+                  width: 40
+                }
+              },
+    }];
+    console.log($scope.selectedPlaceMarker.coords);
+  };
 
   $scope.selectPlace = function(place) {
     $scope.selectedPlace = place;
-    // $scope.setPlaceMarker();
-    // console.log($scope.selectedPlaceMarker[0]);
+    $scope.setPlaceMarker();
   };
 
   $scope.clearSelectedPlace = function() {

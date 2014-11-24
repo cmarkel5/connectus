@@ -26,20 +26,24 @@
   font-size: 20px;
  }
  .lead {
-   font-size: 30px;
-   margin-bottom: 0px;
+  font-size: 30px;
+  margin-bottom: 0px;
  } 
 .place-details {
-    max-height: 100px;
-    transition: .8s;
-    overflow: hidden;
+  max-height: 100px;
+  transition: .8s;
+  overflow: hidden;
+}
+.place-button {
+  width: 25em;
+  height: 4em;
 }
 
 .place-details.hidden {
-    max-height: 0;
+  max-height: 0;
 }
 .highlighted {
-   background: red;
+  background: red;
 }
 li.highlighted:hover {
   background: red;
