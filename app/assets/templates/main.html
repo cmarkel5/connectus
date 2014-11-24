@@ -18,7 +18,7 @@
   <input type="submit" ng-click="showPlaces()">
 </div>
 </form>
-
+<!-- two maps (hide and show) are necessary for markers to persist through different submission -->
 <div class="col-md-3 col-lg-3" ng-hide="selectedPLace">
   <ui-gmap-google-map center="map.center" zoom="map.zoom">
     <ui-gmap-marker data-ng-repeat="marker in markerList" coords="marker.coords" idkey="marker.id">
