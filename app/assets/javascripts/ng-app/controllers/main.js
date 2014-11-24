@@ -1,5 +1,7 @@
 angular.module("connectusApp")
-.controller("MainCtrl", ['$scope', '$log', 'userService', 'placesService','textService', 'uiGmapGoogleMapApi', function ($scope, $log, userService, placesService, textService, uiGmapGoogleMapApi) {
+.controller("MainCtrl", 
+            ['$scope', '$log', 'userService', 'placesService','textService', 'uiGmapGoogleMapApi', 
+            function ($scope, $log, userService, placesService, textService, uiGmapGoogleMapApi) {
 
   uiGmapGoogleMapApi.then(function(/* maps */) {
       // can manipulate the map here.
