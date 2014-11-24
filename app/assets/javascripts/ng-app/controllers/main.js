@@ -105,9 +105,34 @@ angular.module("connectusApp")
       alert('Something went wrong!');
     });
   };
+  $scope.setPlaceMarker = function() {
+    var latitude = $scope.selectedPlace.geometry.location.lat;
+    var longitude = $scope.selectedPlace.geometry.location.lng;
+    var id = $scope.selectedPlace.id;
+    var icon = $scope.selectedPlace.icon;
+    var name = $scope.selectedPlace.name;
+    
+    $scope.selectedPlaceMarker = [
+      { id: id,
+        coords: {
+          latitude: latitude,
+          longitude: longitude
+        },
+        icon: { url: icon,
+                scaledSize: {
+                  height: 40,
+                  width: 40
+                }
+              },
+        name: name
+      }
+    ];
+  };
 
   $scope.selectPlace = function(place) {
     $scope.selectedPlace = place;
+    $scope.setPlaceMarker();
+    console.log($scope.selectedPlaceMarker[0]);
   };
 
   $scope.clearSelectedPlace = function() {
