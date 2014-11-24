@@ -15,7 +15,6 @@ angular.module("connectusApp")
 
   $scope.getUsers();
     
-   
   $scope.selectedUsers = function() {
     //this line resets the userList so you can update correctly
     var users = $scope.userList;
@@ -23,12 +22,12 @@ angular.module("connectusApp")
     users = _.filter(users, function(user) {
       return user.selected === true;
     });
-    console.log(users);
     return users;
   };
-    
+
   $scope.showPlaces = function() {
     var users = $scope.selectedUsers();
+    console.log(users);
     var length = users.length;
    
     var sumLatitude = _.reduce( users, function( memory, user) {
@@ -70,8 +69,14 @@ angular.module("connectusApp")
         }];
 
       $scope.getAllMarkers = function() {
-        $scope.markerList = users;
+        $scope.markerList =  $scope.selectedUsers();
+        console.log($scope.markerList);
       };
+      $scope.getNoMarkers = function() {
+        $scope.markerList = [];
+        console.log($scope.markerList);
+      };
+      $scope.getNoMarkers();
       $scope.getAllMarkers();
   };
 
