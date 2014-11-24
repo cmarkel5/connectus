@@ -19,58 +19,62 @@
 </div>
 </form>
 <!-- two maps (hide and show) are necessary for markers to persist through different submission -->
-<div class="col-md-3 col-lg-3" ng-hide="selectedPLace">
-  <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options">
-    <ui-gmap-marker data-ng-repeat="marker in markerList" coords="marker.coords" idkey="marker.id">
-      <ui-gmap-window options="windowOptions" closeClick="closeClick()">
-        <div>
-        {{marker.name.split(' ')[0]}} {{marker.name.split(' ')[1].split('')[0]}}
-        </div>
-      </ui-gmap-window>
-    </ui-gmap-marker>
-    <ui-gmap-marker data-ng-repeat="marker in midPointMarker" coords="marker.coords" idkey="marker.id" icon="marker.icon">
-      <ui-gmap-window options="windowOptions" closeClick="closeClick()" >
-        <div>
-          {{marker.name}}
-        </div>
-      </ui-gmap-window>
-    </ui-gmap-marker>
-    </ui-gmap-marker>
-     <ui-gmap-marker data-ng-repeat="marker in selectedPlaceMarker" coords="marker.coords" idkey="marker.id" icon="marker.icon">
-      <ui-gmap-window options="windowOptions" closeClick="closeClick()" >
-        <div>
-          {{marker.name}}
-        </div>
-      </ui-gmap-window>
-    </ui-gmap-marker>
-  </ui-gmap-google-map>
-</div>
 
-<div class="col-md-3 col-lg-3" ng-show="selectedPLace">
-  <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options">
-    <ui-gmap-marker data-ng-repeat="marker in markerList" coords="marker.coords" idkey="marker.id">
-      <ui-gmap-window options="windowOptions" closeClick="closeClick()">
-        <div>
-        {{marker.name.split(' ')[0]}} {{marker.name.split(' ')[1].split('')[0]}}
-        </div>
-      </ui-gmap-window>
-    </ui-gmap-marker>
-    <ui-gmap-marker data-ng-repeat="marker in midPointMarker" coords="marker.coords" idkey="marker.id" icon="marker.icon">
-      <ui-gmap-window options="windowOptions" closeClick="closeClick()" >
-        <div>
-          {{marker.name}}
-        </div>
-      </ui-gmap-window>
-    </ui-gmap-marker>
-     <ui-gmap-marker data-ng-repeat="marker in selectedPlaceMarker" coords="marker.coords" idkey="marker.id" icon="marker.icon">
-      <ui-gmap-window options="windowOptions" closeClick="closeClick()" >
-        <div>
-          {{marker.name}}
-        </div>
-      </ui-gmap-window>
-    </ui-gmap-marker>
-  </ui-gmap-google-map>
-</div>
+  <div class="col-md-3 col-lg-3" ng-hide="selectedPLace">
+    <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options">
+      <ui-gmap-marker data-ng-repeat="marker in markerList" coords="marker.coords" idkey="marker.id">
+        <ui-gmap-window options="windowOptions" closeClick="closeClick()">
+          <div>
+          {{marker.name.split(' ')[0]}} {{marker.name.split(' ')[1].split('')[0]}}
+          </div>
+        </ui-gmap-window>
+      </ui-gmap-marker>
+      <ui-gmap-marker data-ng-repeat="marker in midPointMarker" coords="marker.coords" idkey="marker.id" icon="marker.icon">
+        <ui-gmap-window options="windowOptions" closeClick="closeClick()" >
+          <div>
+            {{marker.name}}
+          </div>
+        </ui-gmap-window>
+      </ui-gmap-marker>
+      </ui-gmap-marker>
+       <ui-gmap-marker data-ng-repeat="marker in selectedPlaceMarker" coords="marker.coords" idkey="marker.id" icon="marker.icon">
+        <ui-gmap-window options="windowOptions" closeClick="closeClick()" >
+          <div>
+            {{marker.name}}
+          </div>
+        </ui-gmap-window>
+      </ui-gmap-marker>
+    </ui-gmap-google-map>
+  </div>
+
+
+
+  <div class="col-md-3 col-lg-3" ng-show="selectedPLace">
+    <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options">
+      <ui-gmap-marker data-ng-repeat="marker in markerList" coords="marker.coords" idkey="marker.id">
+        <ui-gmap-window options="windowOptions" closeClick="closeClick()">
+          <div>
+          {{marker.name.split(' ')[0]}} {{marker.name.split(' ')[1].split('')[0]}}
+          </div>
+        </ui-gmap-window>
+      </ui-gmap-marker>
+      <ui-gmap-marker data-ng-repeat="marker in midPointMarker" coords="marker.coords" idkey="marker.id" icon="marker.icon">
+        <ui-gmap-window options="windowOptions" closeClick="closeClick()" >
+          <div>
+            {{marker.name}}
+          </div>
+        </ui-gmap-window>
+      </ui-gmap-marker>
+       <ui-gmap-marker data-ng-repeat="marker in selectedPlaceMarker" coords="marker.coords" idkey="marker.id" icon="marker.icon">
+        <ui-gmap-window options="windowOptions" closeClick="closeClick()" >
+          <div>
+            {{marker.name}}
+          </div>
+        </ui-gmap-window>
+      </ui-gmap-marker>
+    </ui-gmap-google-map>
+  </div>
+
 
 
  <section>
