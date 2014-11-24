@@ -65,7 +65,7 @@
       <div ng-click="clearSelectedPlace();" class="close"><a href="">Back</a></div>
       <p>{{selectedPlace.name}}</p>
       <p>{{selectedPlace.vicinity}}</p>
-      <button>text address</button>
+      <button ng-click="textAddress(selectedPlace.vicinity)">text address</button>
     </div>
   </div>
 </section>
