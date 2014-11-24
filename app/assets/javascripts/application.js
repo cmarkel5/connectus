@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require angular
 //= require angular-animate
+//= require angular-bootstrap
+//= require angular-animate/angular-animate.js
 //= require angular-ui-router
 //= require lodash/dist/lodash.compat.js
 //= require angular-google-maps/dist/angular-google-maps.js
