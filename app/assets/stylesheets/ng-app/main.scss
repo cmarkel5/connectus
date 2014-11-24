@@ -1,8 +1,13 @@
 @import "bootstrap";
 
+.help {
+  padding-left: 100px;
+  color:red;
+}
+
 .angular-google-map-container {
-  width: 450px;
-  height: 300px;
+  width: 600px;
+  height: 400px;
   margin: auto;
 }
 
@@ -72,6 +77,9 @@ h1, h2, h3, h4 {
 }
 
 #background-main {
+  background-image: url("//i.imgur.com/YT0akmL.png?1");
+  background-size: cover;
+  background-repeat: repeat-y;
   position: absolute; 
   top: -50px; 
   left: 0;  
@@ -80,6 +88,10 @@ h1, h2, h3, h4 {
   z-index: -1;
 }
 
+.groupForm {
+  padding-top: 200px;
+  color: white;
+}
 
 
 /*.panel-heading {
