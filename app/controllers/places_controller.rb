@@ -14,5 +14,4 @@ class PlacesController < ActionController::Base
 end
 
 
-    
  

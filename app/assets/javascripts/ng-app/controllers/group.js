@@ -1,7 +1,7 @@
 angular.module("connectusApp")
-.controller("GroupCtrl", ['$scope', 'groupService', 'placesService', function ($scope, groupService, placesService) {
+.controller("GroupCtrl", ['$scope', 'groupService', 'placesService','textService', function ($scope, groupService, placesService, textService) {
 
-   $scope.getUsers = function() {
+  $scope.getUsers = function() {
     groupService.getAllUsers().success(function(data) {
       $scope.userList = data;
     }).error(function() {
@@ -19,7 +19,12 @@ angular.module("connectusApp")
     users = _.filter(users, function(user) {
       return user.selected === true;
     });
+    console.log(users);
+    return users;
+  };
     
+  $scope.showPlaces = function() {
+    var users = $scope.selectedUsers();
     var length = users.length;
    
     var sumLatitude = _.reduce( users, function( memory, user) {
@@ -37,7 +42,6 @@ angular.module("connectusApp")
     $scope.midPoint = averageLatitude + "," + averageLongitude;
 
     $scope.getPlaces();
-
   };
 
   $scope.getPlaces = function() {
@@ -51,7 +55,7 @@ angular.module("connectusApp")
   
   //move this filter to rails side in places controller
   $scope.places = _.filter($scope.placesHash, function(place) {
-      return place.opening_hours.open_now === true && !_.contains(place.types, "lodging");
+    return place.opening_hours.open_now === true && !_.contains(place.types, "lodging");
   });
 
   $scope.selectPlace = function(place) {
@@ -62,15 +66,14 @@ angular.module("connectusApp")
     $scope.selectedPlace = null;
   };
 
-  $scope.textAddress = function(address) {
-    account_sid = "ACd2ddae5650ca06720b7a7ba52f6a04d4"
-    auth_token = "1d2ced219c26754a5bd66f297aa45945"
-    client = Twilio::REST::Client.new account_sid, auth_token
-    from = "+17702855442" # My Twilio number
-      client.account.messages.create(
-        :from => from,
-        :to => self.phone,
-        :body => address )
+  $scope.textAddress = function(place, address) {
+    var users = $scope.selectedUsers();
+
+    textService.textUsers(users, place, address).success(function() {
+      alert('Successfully texted group!');
+    }).error(function() {
+      alert('Something went wrong!');
+    });
   };
   
 }]);
