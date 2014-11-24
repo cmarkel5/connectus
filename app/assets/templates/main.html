@@ -16,16 +16,12 @@
       </tr>
     </tbody>
   </table>
-  <input type="submit" ng-click="selectedUsers()">
+  <input type="submit" ng-click="showPlaces()">
 </div>
 </form>
 
 <div class="col-md-3 col-lg-3">
-  <script type="text/ng-template" id="searchbox.tpl.html">
-          <input type="text" placeholder="Search Box">
-  </script>
   <ui-gmap-google-map center="map.center" zoom="map.zoom">
-    <ui-gmap-search-box template="searchbox.template"></ui-gmap-search-box>
     <ui-gmap-marker data-ng-repeat="marker in markerList" coords="marker.coords" idkey="marker.id">
       <ui-gmap-window options="windowOptions" closeClick="closeClick()">
         <div>
@@ -65,7 +61,7 @@
       <div ng-click="clearSelectedPlace();" class="close"><a href="">Back</a></div>
       <p>{{selectedPlace.name}}</p>
       <p>{{selectedPlace.vicinity}}</p>
-      <button ng-click="textAddress(selectedPlace.vicinity)">text address</button>
+       <button ng-click="textAddress(selectedPlace.name, selectedPlace.vicinity)">text address</button>
     </div>
   </div>
 </section>

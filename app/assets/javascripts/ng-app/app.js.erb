@@ -19,14 +19,9 @@ angular
        */
       $stateProvider
           .state('main', {
-              url: '/main',
+              url: '/',
               templateUrl: '<%= asset_path "main.html" %>',
               controller: 'MainCtrl'
-          })
-          .state('group', {
-              url: '/',
-              templateUrl: '<%= asset_path "group.html" %>',
-              controller: 'GroupCtrl'
           })
           .state('about', {
               url: '/about',
