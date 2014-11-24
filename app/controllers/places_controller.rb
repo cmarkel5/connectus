@@ -2,16 +2,44 @@ class PlacesController < ActionController::Base
 
   # GET /places
   # GET /places.json
-  def index
-    # Default to params, second is test, third is realsies
-    location = params[:location] || "38.8977332,-77.0365305" || "33.771527,-84.367367"
-    search_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyATtqKSdyRFCZNA1Lce8OxV3_TD-NEyxaA&location=#{location}&rankby=distance&keyword=wifi&types=bakery|bar|book_store|cafe|food|library|restaurant"
-    # search_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyATtqKSdyRFCZNA1Lce8OxV3_TD-NEyxaA&location=#{location}&rankby=distance&keyword=free%20wifi&types=bakery|bar|book_store|cafe|food|library|restaurant"
-    search_url = URI::encode(search_url)
-    places = HTTParty.get search_url
-    @places = places["results"].uniq
+  def search_places
+    # coordinates = params[:coordinates] || { latitude: 33.771112, longitude: -84.367090 }
+    latitude = params[:latitude] || 33.771112
+    longitude = params[:longitude] || -84.367090
+    coordinates = { latitude: latitude, longitude: longitude }
+    params = { term: 'free wifi' }
+    businesses = Yelp.client.search_by_coordinates(coordinates, params).businesses
+    @places = []
+    businesses.each do |biz|
+      place = {}
+      place[:id] = biz.id
+      place[:name] = biz.name
+      place[:snippet] = biz.snippet_image_url
+      place[:rating] = biz.rating
+      place[:url] = biz.url
+      place[:coords] = biz.location.coordinate
+      place[:address] = biz.location.display_address.join(",")
+      place[:summary] = biz.snippet_text
+      place[:closed] = biz.is_closed
+      @places << place
+    end
+    @places
+    # binding.pry
   end
+  # add the ruby version of the filter below to the api call...
+  #   $scope.filterPlaces = function() {
+  # //move this filter to rails side in places controller
+  #   $scope.places = _.filter($scope.placesHash, function(place) {
+  #     return !_.contains(place.types, "lodging");
+  #   });
+  # };
 end
 
 
- 
+
+
+
+
+
+
+

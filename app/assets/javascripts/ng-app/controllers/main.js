@@ -32,7 +32,7 @@ angular.module("connectusApp")
   $scope.getAverageLatitude = function() {
     var sumLatitude = _.reduce( $scope.users, function( memory, user) {
     return memory + user.latitude;
-  }, 0 );
+    }, 0 );
     
     $scope.averageLatitude = sumLatitude/$scope.length;
   };  
@@ -49,17 +49,21 @@ angular.module("connectusApp")
     $scope.setLengthOfUsers();
     $scope.getAverageLatitude();
     $scope.getAverageLongitude();
-    $scope.midPoint = $scope.averageLatitude + "," + $scope.averageLongitude;
+    $scope.midPoint = {
+      latitude: $scope.averageLatitude,
+      longitude: $scope.averageLongitude
+    };
   };
   
   $scope.setMap = function() {
-  $scope.map = {
+    $scope.map = {
       center: {
         latitude: $scope.averageLatitude,
         longitude: $scope.averageLongitude
       },
       zoom: 10
     };
+    $scope.options = {scrollwheel: false};
   };
 
   $scope.setMidPointMarker = function() {
@@ -90,49 +94,36 @@ angular.module("connectusApp")
     $scope.setUsersMarkers();
   };
 
-  $scope.filterPlaces = function() {
-  //move this filter to rails side in places controller
-    $scope.places = _.filter($scope.placesHash, function(place) {
-      return !_.contains(place.types, "lodging");
-    });
-  };
-
   $scope.getPlaces = function() {
-    placesService.getAllPlaces($scope.midPoint).success(function(data) {
+    placesService.getAllPlaces($scope.averageLatitude, $scope.averageLongitude).success(function(data) {
       $scope.placesHash = data;
-      $scope.filterPlaces();
     }).error(function() {
       alert('Something went wrong!');
     });
   };
   $scope.setPlaceMarker = function() {
-    var latitude = $scope.selectedPlace.geometry.location.lat;
-    var longitude = $scope.selectedPlace.geometry.location.lng;
+    var coords = $scope.selectedPlace.coords.hash;
     var id = $scope.selectedPlace.id;
-    var icon = $scope.selectedPlace.icon;
     var name = $scope.selectedPlace.name;
     
     $scope.selectedPlaceMarker = [
-      { id: id,
-        coords: {
-          latitude: latitude,
-          longitude: longitude
-        },
-        icon: { url: icon,
+      {
+        id: id,
+        name: name,
+        coords: coords,
+        icon: { url:"http://www.clker.com/cliparts/r/J/F/7/y/4/placemark-th.png",
                 scaledSize: {
                   height: 40,
                   width: 40
                 }
               },
-        name: name
-      }
-    ];
+    }];
+    console.log($scope.selectedPlaceMarker.coords);
   };
 
   $scope.selectPlace = function(place) {
     $scope.selectedPlace = place;
     $scope.setPlaceMarker();
-    console.log($scope.selectedPlaceMarker[0]);
   };
 
   $scope.clearSelectedPlace = function() {
