@@ -1,21 +1,76 @@
 @import "bootstrap";
 
 .angular-google-map-container {
-  width: 700px;
-  height: 400px;
+  width: 550px;
+  height: 350px;
 }
 
-/*
-.checkbox {
-  width: 19px;
-  height: 25px;
-  padding: 0 5px 0 0;
-  background: url(checkbox.png) no-repeat;
-  display: block;
-  clear: left;
-  float: left;
+.navbar {
+  background-color: black;
+  border: none;
+  border-radius: 0;
 }
-*/
+
+.well {
+  background-color: black;
+  h1 {
+    color: white;
+  }
+  p {
+    color: white;
+  }
+}
+
+#well-signin {
+  margin-top: 80px;
+  color: white;
+}
+
+#well-signup {
+  color: white;
+}
+
+h1 {
+  text-align: center;
+}
+
+#background-welcome {
+  position: absolute; 
+  top: -50px; 
+  left: 0;  
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
+
+#background-about {
+  position: absolute; 
+  top: -50px; 
+  left: 0;  
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
+
+#background-signin {
+  position: absolute; 
+  top: -50px; 
+  left: 0;  
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
+
+#background-signup {
+  position: absolute; 
+  top: -50px; 
+  left: 0;  
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
+
+
 .panel-heading {
   border: 1px solid #6AA7D3;
   border-left-width: 10px;
