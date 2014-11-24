@@ -19,81 +19,92 @@ angular.module("connectusApp")
     //this line resets the userList so you can update correctly
     var users = $scope.userList;
     //this line filter out for users that were selected upon a submit click
-    users = _.filter(users, function(user) {
+    $scope.users = _.filter(users, function(user) {
       return user.selected === true;
     });
-    return users;
+    return $scope.users;
   };
 
-  $scope.showPlaces = function() {
-    var users = $scope.selectedUsers();
-    console.log(users);
-    var length = users.length;
-   
-    var sumLatitude = _.reduce( users, function( memory, user) {
-      return memory + user.latitude;
-    }, 0 );
+  $scope.setLengthOfUsers = function() {
+    $scope.length = $scope.users.length;
+  };
+
+  $scope.getAverageLatitude = function() {
+    var sumLatitude = _.reduce( $scope.users, function( memory, user) {
+    return memory + user.latitude;
+  }, 0 );
     
-    var averageLatitude = sumLatitude/length;
-  
-    var sumLongitude = _.reduce( users, function( memory, user) {
+    $scope.averageLatitude = sumLatitude/$scope.length;
+  };  
+
+  $scope.getAverageLongitude = function() {
+    var sumLongitude = _.reduce( $scope.users, function( memory, user) {
       return memory + user.longitude;
     }, 0 );
     
-    var averageLongitude = sumLongitude/length;
+    $scope.averageLongitude = sumLongitude/$scope.length;
+  };
 
-    $scope.midPoint = averageLatitude + "," + averageLongitude;
+  $scope.getMidPoint = function() {
+    $scope.setLengthOfUsers();
+    $scope.getAverageLatitude();
+    $scope.getAverageLongitude();
+    $scope.midPoint = $scope.averageLatitude + "," + $scope.averageLongitude;
+  };
+  
+  $scope.setMap = function() {
+  $scope.map = {
+      center: {
+        latitude: $scope.averageLatitude,
+        longitude: $scope.averageLongitude
+      },
+      zoom: 10
+    };
+  };
 
-    $scope.getPlaces();
-
-    $scope.map = {
-        center: {
-          latitude: averageLatitude,
-          longitude: averageLongitude
+  $scope.setMidPointMarker = function() {
+    $scope.midPointMarker = [
+      { id: 0,
+        coords: {
+          latitude: $scope.averageLatitude,
+          longitude: $scope.averageLongitude
         },
-        zoom: 10
-      };
+        icon: { url:"http://www.clker.com/cliparts/c/I/g/P/d/h/google-maps-pin-blue-th.png",
+                scaledSize: {
+                  height: 40,
+                  width: 40
+                }
+              },
+        name: "Midpoint"
+      }
+    ];
+  };
 
-      $scope.midPointMarker = [
-        { id: 0,
-         coords: {
-            latitude: averageLatitude,
-            longitude: averageLongitude
-          },
-          icon: { url:"http://www.clker.com/cliparts/c/I/g/P/d/h/google-maps-pin-blue-th.png",
-                  scaledSize: {height: 40,
-                         width: 40
-                        }
-                },
-          name: "Midpoint"
-        }];
+  $scope.setUsersMarkers = function() {
+    $scope.markerList =  $scope.users;
+  };
 
-      $scope.getAllMarkers = function() {
-        $scope.markerList =  $scope.selectedUsers();
-        console.log($scope.markerList);
-      };
-      $scope.getNoMarkers = function() {
-        $scope.markerList = [];
-        console.log($scope.markerList);
-      };
-      $scope.getNoMarkers();
-      $scope.getAllMarkers();
+  $scope.showMap = function() {
+    $scope.setMap();
+    $scope.setMidPointMarker();
+    $scope.setUsersMarkers();
+  };
+
+  $scope.filterPlaces = function() {
+  //move this filter to rails side in places controller
+    $scope.places = _.filter($scope.placesHash, function(place) {
+      return !_.contains(place.types, "lodging");
+    });
   };
 
   $scope.getPlaces = function() {
     placesService.getAllPlaces($scope.midPoint).success(function(data) {
       $scope.placesHash = data;
+      $scope.filterPlaces();
     }).error(function() {
       alert('Something went wrong!');
     });
   };
-
-  
-
-  //move this filter to rails side in places controller
-  $scope.places = _.filter($scope.placesHash, function(place) {
-    return place.opening_hours.open_now === true && !_.contains(place.types, "lodging");
-  });
 
   $scope.selectPlace = function(place) {
     $scope.selectedPlace = place;
@@ -103,10 +114,15 @@ angular.module("connectusApp")
     $scope.selectedPlace = null;
   };
 
-  $scope.textAddress = function(place, address) {
-    var users = $scope.selectedUsers();
+  $scope.showPlaces = function() {
+    $scope.selectedUsers();
+    $scope.getMidPoint();
+    $scope.getPlaces();
+    $scope.showMap();
+  };
 
-    textService.textUsers(users, place, address).success(function() {
+  $scope.textAddress = function(place, address) {
+    textService.textUsers($scope.users, place, address).success(function() {
       alert('Successfully texted group!');
     }).error(function() {
       alert('Something went wrong!');
