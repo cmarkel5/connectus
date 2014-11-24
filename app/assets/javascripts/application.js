@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-sass-official/assets/javascripts/bootstrap-sprockets.js
 //= require angular
 //= require angular-animate
 //= require angular-bootstrap
