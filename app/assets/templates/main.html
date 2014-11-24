@@ -76,7 +76,7 @@
  <section ng-hide="selectedPlace">
     <div class="col-md-offset-3 col-lg-offset-3 col-md-3 col-lg-3 center well">  
       <h1 class="text-center">Suggested Places:</h1> 
-      <div ng-repeat= "place in places" class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div ng-repeat= "place in placesHash" class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
           <!-- <button class="place-button"> -->
             <div ng-class="{ highlighted: place === selectedPlace }" ng-click="selectPlace(place);"class="panel-heading" role="tab" id="headingOne">
@@ -94,8 +94,8 @@
     <div class="panel-body">
       <div ng-click="clearSelectedPlace();" class="close"><a href="">Back</a></div>
       <p>{{selectedPlace.name}}</p>
-      <p>{{selectedPlace.vicinity}}</p>
-      <p>open now: {{selectedPlace.opening_hours.open_now}}</p>
+      <p>{{selectedPlace.location}}</p>
+      <p>is closed {{selectedPlace.is_closed}}</p>
        <button ng-click="textAddress(selectedPlace.name, selectedPlace.vicinity)">text address</button>
     </div>
   </div>

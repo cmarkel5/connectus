@@ -94,40 +94,40 @@ angular.module("connectusApp")
   };
 
   $scope.getPlaces = function() {
-    placesService.getAllPlaces($scope.getAverageLatitude, $scope.getAverageLongitude).success(function(data) {
+    placesService.getAllPlaces($scope.averageLatitude, $scope.averageLongitude).success(function(data) {
       $scope.placesHash = data;
     }).error(function() {
       alert('Something went wrong!');
     });
   };
-  $scope.setPlaceMarker = function() {
-    var latitude = $scope.selectedPlace.geometry.location.lat;
-    var longitude = $scope.selectedPlace.geometry.location.lng;
-    var id = $scope.selectedPlace.id;
-    var icon = $scope.selectedPlace.icon;
-    var name = $scope.selectedPlace.name;
+  // $scope.setPlaceMarker = function() {
+  //   var latitude = $scope.selectedPlace.geometry.location.lat;
+  //   var longitude = $scope.selectedPlace.geometry.location.lng;
+  //   var id = $scope.selectedPlace.id;
+  //   var icon = $scope.selectedPlace.icon;
+  //   var name = $scope.selectedPlace.name;
     
-    $scope.selectedPlaceMarker = [
-      { id: id,
-        coords: {
-          latitude: latitude,
-          longitude: longitude
-        },
-        icon: { url: icon,
-                scaledSize: {
-                  height: 40,
-                  width: 40
-                }
-              },
-        name: name
-      }
-    ];
-  };
+  //   $scope.selectedPlaceMarker = [
+  //     { id: id,
+  //       coords: {
+  //         latitude: latitude,
+  //         longitude: longitude
+  //       },
+  //       icon: { url: icon,
+  //               scaledSize: {
+  //                 height: 40,
+  //                 width: 40
+  //               }
+  //             },
+  //       name: name
+  //     }
+  //   ];
+  // };
 
   $scope.selectPlace = function(place) {
     $scope.selectedPlace = place;
-    $scope.setPlaceMarker();
-    console.log($scope.selectedPlaceMarker[0]);
+    // $scope.setPlaceMarker();
+    // console.log($scope.selectedPlaceMarker[0]);
   };
 
   $scope.clearSelectedPlace = function() {

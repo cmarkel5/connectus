@@ -4,11 +4,13 @@ class PlacesController < ActionController::Base
   # GET /places.json
   def search_places
     # coordinates = params[:coordinates] || { latitude: 33.771112, longitude: -84.367090 }
-    coordinates = params[:latitude], params[:longitude]
-    params = { term: 'free wifi' } 
-    binding.pry
+    latitude = params[:latitude]
+    longitude = params[:longitude]
+    coordinates = { latitude: latitude, longitude: longitude }
+    params = { term: 'free wifi' }
     places = Yelp.client.search_by_coordinates(coordinates, params)
     @places = places.businesses
+
   end
   # add the ruby version of the filter below to the api call...
   #   $scope.filterPlaces = function() {
@@ -19,18 +21,6 @@ class PlacesController < ActionController::Base
   # };
 end
 
-  this.getAllPlaces = function(lat, long) {
-    return $http.get(placesUrl + '.json', { 
-                                            params: { 
-                                              coordinates: {
-                                                latitude: lat,
-                                                longitude: long
-                                              }
-                                            }
-                                          });  
-  };
-
-}]);
 
 
 

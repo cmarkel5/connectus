@@ -6,14 +6,12 @@ angular.module('connectusApp')
 
   that.places = [];
 
-  this.getAllPlaces = function(midPoint) {
-    return $http.get(placesUrl + '.json', { params: { location: midPoint }});
-      
-   
+  this.getAllPlaces = function(latitude, longitude) {
+    params = { latitude: latitude, longitude: longitude };
+    return $http.get(placesUrl + '.json', { params: params });
   };
 
 }]);
-
 
 
 
