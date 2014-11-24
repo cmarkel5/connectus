@@ -1,19 +1,19 @@
 <% provide(:title, 'Welcome') %>
 <%= render 'layouts/navigation' %>
-<div class="row">
-  <div class="col-md-4 col-sm-8 col-sm-offset-2">
-    <div class="well">
-      <h1> Welcome to Connect.us </h1>
-      <p class="text-center"> Find a convenient place to meet halfway</p>
-      </br>
-      <div class = "form-button text-center">
-        <% if signed_in? %>
-          <%= link_to "Search", app_path, class: "btn btn-large btn-success" %>
-        <% else %>
-          <%= link_to "SIGN UP", signup_path, class: "btn btn-large btn-success" %>
-        <% end %>  
-      </div>
-      </br>
+<img src="http://i.imgur.com/YT0akmL.png?1" id="background-welcome" >
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<div class="row col-xs-4 col-xs-offset-4">
+  <div class="well text-center">
+    <h1> Welcome to Connect.us </h1>
+    <p> Find a convenient place to meet halfway</p>
+    </br>
+    <div>
+      <% if signed_in? %>
+        <%= link_to "Search", app_path, class: "btn btn-large btn-primary" %>
+      <% else %>
+        <%= link_to "Sign up", signup_path, class: "btn btn-large btn-primary" %>
+      <% end %>  
     </div>
+    </br>
   </div>
 </div>
