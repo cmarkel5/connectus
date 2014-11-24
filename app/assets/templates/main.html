@@ -1,14 +1,14 @@
-<img src="http://i.imgur.com/iMlnpi4.png?1" id="background-main">
+<div id="background-main">
 
 <form class="groupForm" ng-submit="submitForm();">
-  <h3>Connect Group</h3>
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 text-center">
       <div class="well" >
+        <h3>Connect Group</h3>
         <table class="table">
           <tbody>
             <tr ng-repeat="user in userList" >
-             <td class="text-center">
+             <td>
                <input type="checkbox" class="styled" ng-model="user.selected" >
              </td>
              <td><h4>{{user.name}}</h4></td>
@@ -21,14 +21,14 @@
   </div>
 </form>
 
-    <span class="visible-xs">XS</span>
-    <span class="visible-sm">S</span>
-    <span class="visible-md">M</span>
-    <span class="visible-lg">L</span>
+    <span class=" help visible-xs">XS</span>
+    <span class=" help visible-sm">S</span>
+    <span class=" help visible-md">M</span>
+    <span class=" help visible-lg">L</span>
 
 <!-- two maps (hide and show) are necessary for markers to persist through different submission -->
 <div class="row">
-  <div class="col-xs-12 col-sm-4 col-sm-offset-2 col-md-2 col-md-offset-2 text-center" ng-hide="selectedPLace">
+  <div class="col-xs-12 col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3 text-center" ng-hide="selectedPLace">
     <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options">
       <ui-gmap-marker data-ng-repeat="marker in markerList" coords="marker.coords" idkey="marker.id">
         <ui-gmap-window options="windowOptions" closeClick="closeClick()">
@@ -57,7 +57,7 @@
 </div>
 
 <div class="row">
-  <div class="col-xs-12 col-sm-4 col-sm-offset-2 col-md-2 col-md-offset-2 text-center" ng-show="selectedPLace">
+  <div class="col-xs-12 col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3 text-center" ng-show="selectedPLace">
     <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options">
       <ui-gmap-marker data-ng-repeat="marker in markerList" coords="marker.coords" idkey="marker.id">
         <ui-gmap-window options="windowOptions" closeClick="closeClick()">
@@ -114,5 +114,4 @@
   </div>
 </div>
 
-   
-
+</div>
