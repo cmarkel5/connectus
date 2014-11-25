@@ -25,7 +25,7 @@ body {
 .well {
   background-color: black;
   border-color: black;
-  padding: 80px;
+  padding: 40px;
   h1 {
     color: white;
   }
@@ -113,6 +113,19 @@ h1, h2, h3, h4 {
 }
 .title {
   color: white;
+}
+#suggested-places {
+  width: 36.5em;
+  height: 4em;
+}
+
+#selected-place {
+  color: white;
+}
+
+#back {
+  color: blue;
+  text-decoration: none;
 }
 
 
