@@ -1,8 +1,12 @@
 @import "bootstrap";
 
+body {
+  background-color: black;
+}
 .help {
   padding-left: 100px;
   color:red;
+  font-size: 80px;
 }
 
 .angular-google-map-container {
@@ -15,10 +19,13 @@
   background-color: black;
   border: none;
   border-radius: 0;
+  color: white;
 }
 
 .well {
   background-color: black;
+  border-color: black;
+  padding: 80px;
   h1 {
     color: white;
   }
@@ -36,11 +43,22 @@
   color: white;
 }
 
+#home {
+  padding-top: 150px;
+  h1 {
+    font-size: 50px;
+  }
+  p {
+    font-size: 15px;
+  }
+}
+
 h1, h2, h3, h4 {
   text-align: center;
 }
 
 #background-welcome {
+  background-size: cover;
   position: absolute; 
   top: -50px; 
   left: 0;  
