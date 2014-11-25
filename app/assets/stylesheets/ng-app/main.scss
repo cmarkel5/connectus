@@ -35,6 +35,29 @@ body {
 
 }
 
+.well-selected-place {
+  background-color: black;
+  border-color: black;
+  padding: 10px;
+  h1 {
+    color: white;
+  }
+  p {
+    color: white;
+  }
+}
+
+
+.well-places {
+  background-color: black;
+  border-color: black;
+  padding: 20px;
+  h1 {
+      color: #2563AB;
+  }
+}
+
+
 #well-signin {
   margin-top: 80px;
   color: white;
@@ -96,7 +119,7 @@ h1, h2, h3, h4 {
 }
 
 #background-main {
-  background-image: url("//i.imgur.com/YT0akmL.png?1");
+  background-image: url("//i.imgur.com/XJL8UXt.jpg?1");
   background-size: cover;
   background-repeat: repeat-y;
   position: absolute; 
@@ -112,8 +135,29 @@ h1, h2, h3, h4 {
   color: white;
 }
 .title {
-  color: white;
+  color: #2563AB;
 }
+
+
+.close {
+  text-decoration: none;
+}
+
+.panel-group:hover {
+  font-size: 20px; 
+   cursor: hand; 
+   color: #2563AB;
+ }
+ .panel-heading:hover {
+  font-size: 20px; 
+   cursor: hand; 
+   color: #2563AB;
+ }
+ .place-name:hover {
+  font-size: 20px; 
+   cursor: pointer;
+   color: #2563AB; 
+ }
 
 
 /*.panel-heading {
@@ -122,9 +166,7 @@ h1, h2, h3, h4 {
   background-color: #C0C0C0;
   color: #6AA7D3;
 }
-.panel-body {
-  font-size: 20px;
- }
+
  .lead {
   font-size: 30px;
   margin-bottom: 0px;
