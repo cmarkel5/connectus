@@ -1,20 +1,19 @@
 <% provide(:title, 'Welcome') %>
 <%= render 'layouts/navigation' %>
 <img src="http://i.imgur.com/YT0akmL.png?1" id="background-welcome" >
-<div class="row">
-  <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
+<div id="home" class="row">
+  <div class="col-xs-12 col-sm-7 col-sm-offset-3 col-m-6 col-sm-offset-3  col-lg-6 col-lg-offset-3  text-center">
     <div class="well">
-      <h1> Welcome to Connect.us </h1>
-      <p> Find a convenient place to meet halfway</p>
+      <h1> Welcome to Connect.us </h1></br>
+      <p> Find a convenient place to meet halfway with Wi-Fi</p>
       </br>
       <div>
         <% if signed_in? %>
-          <%= link_to "Search", app_path, class: "btn btn-large btn-primary" %>
+          <%= link_to "Connect Now!", app_path, class: "btn btn-large btn-primary" %>
         <% else %>
           <%= link_to "Sign up", signup_path, class: "btn btn-large btn-primary" %>
         <% end %>  
       </div>
-      </br>
     </div>
   </div>
 </div>
