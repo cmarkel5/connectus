@@ -63,7 +63,7 @@ angular.module("connectusApp")
         latitude: $scope.averageLatitude,
         longitude: $scope.averageLongitude
       },
-      zoom: 10
+      zoom: 11
     };
 
     var main_color = '#2d313f',
