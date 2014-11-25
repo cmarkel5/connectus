@@ -1,5 +1,6 @@
 @import "bootstrap";
 
+
 body {
   background-color: black;
 }
@@ -13,6 +14,7 @@ body {
   width: 600px;
   height: 400px;
   margin: auto;
+  padding-top: 200px;
 }
 
 .navbar {
@@ -20,6 +22,13 @@ body {
   border: none;
   border-radius: 0;
   color: white;
+}
+.jumbotron {
+  background-color: black;
+  border-color: black;
+  padding: 80px;
+  position: center;
+  padding: 5em;
 }
 
 .well {
@@ -35,10 +44,24 @@ body {
 
 }
 
-.well-selected-place {
+.well-group {
   background-color: black;
   border-color: black;
-  padding: 10px;
+  padding:10px;
+  h1 {
+    color: white;
+  }
+  p {
+    color: white;
+  }
+
+}
+
+.well-selected-place {
+  background-color: black;
+  opacity: 0.9;
+  border-color: black;
+  padding: 100px;
   h1 {
     color: white;
   }
@@ -160,7 +183,7 @@ h1, h2, h3, h4 {
  }
 
 
-/*.panel-heading {
+.panel-heading {
   border: 1px solid #6AA7D3;
   border-left-width: 10px;
   background-color: #C0C0C0;
@@ -189,6 +212,6 @@ h1, h2, h3, h4 {
 }
 li.highlighted:hover {
   background: red;
-}*/
+}
 
   

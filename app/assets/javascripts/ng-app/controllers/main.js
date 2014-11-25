@@ -11,7 +11,7 @@ angular.module("connectusApp")
     userService.getAllUsers().success(function(data) {
       $scope.userList = data;
     }).error(function() {
-      alert('Something went wrong!');
+      alert('Please pick members for meeting, and click submit again!');
     });
   };
 
