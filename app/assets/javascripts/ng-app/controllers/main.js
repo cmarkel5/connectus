@@ -146,7 +146,7 @@ angular.module("connectusApp")
         id: id,
         name: name,
         coords: coords,
-        icon: { url:"http://www.clker.com/cliparts/r/J/F/7/y/4/placemark-th.png",
+        icon: { url:"http://www.clker.com/cliparts/A/8/Y/w/2/I/white-google-map-pin-th.png",
                 scaledSize: {
                   height: 40,
                   width: 40
