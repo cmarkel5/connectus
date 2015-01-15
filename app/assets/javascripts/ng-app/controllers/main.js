@@ -7,15 +7,7 @@ angular.module("connectusApp")
       // can manipulate the map here.
     });
 
-  $scope.getUsers = function() {
-    userService.getAllUsers().success(function(data) {
-      $scope.userList = data;
-    }).error(function() {
-      alert('Something went wrong!');
-    });
-  };
 
-  $scope.getUsers();
 
   $scope.getGeolocation = function() {
     if (navigator.geolocation) {
@@ -29,6 +21,16 @@ angular.module("connectusApp")
   };
 
   $scope.getGeolocation();
+
+  $scope.getUsers = function() {
+    userService.getAllUsers().success(function(data) {
+      $scope.userList = data;
+    }).error(function() {
+      alert('Something went wrong!');
+    });
+  };
+
+  $scope.getUsers();
     
   $scope.selectedUsers = function() {
     //this line resets the userList so you can update correctly
@@ -111,7 +113,7 @@ angular.module("connectusApp")
     };
 
   $scope.checkedGeolocation = function () {
-    $scope.geolocation = true;
+    $scope.geolocation;
     $scope.setGeolocationMarkers();
 
   };
