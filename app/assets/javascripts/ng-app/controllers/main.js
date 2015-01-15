@@ -16,6 +16,19 @@ angular.module("connectusApp")
   };
 
   $scope.getUsers();
+
+  $scope.getGeolocation = function() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position){
+          $scope.$apply(function(){
+            // console.log("position" + JSON.stringify(position.coords));
+           $scope.position = position.coords;
+          });
+        });
+      }
+  };
+
+  $scope.getGeolocation();
     
   $scope.selectedUsers = function() {
     //this line resets the userList so you can update correctly
@@ -28,24 +41,35 @@ angular.module("connectusApp")
   };
 
   $scope.setLengthOfUsers = function() {
-    $scope.length = $rootScope.users.length;
+    // the below if statement accounts for user input of current geolocation
+    if ($scope.geolocation) {
+      $scope.length = $scope.users.length +   1;
+    } else {
+    $scope.length = $scope.users.length;
+    }
   };
 
   $scope.getAverageLatitude = function() {
-    var sumLatitude = _.reduce( $rootScope.users, function( memory, user) {
-    return memory + user.latitude;
-    }, 0 );
-    
-    $scope.averageLatitude = sumLatitude/$scope.length;
-  };  
+     var sumLatitude = _.reduce( $scope.users, function( memory, user) {
+     return memory + user.latitude;
+     }, 0 );
+     if ($scope.geolocation) {
+       $scope.averageLatitude = (sumLatitude + $scope.position.latitude) /$scope.length;
+     } else {
+       $scope.averageLatitude = sumLatitude/$scope.length;
+     }
+   };  
 
-  $scope.getAverageLongitude = function() {
-    var sumLongitude = _.reduce( $rootScope.users, function( memory, user) {
-      return memory + user.longitude;
-    }, 0 );
-    
-    $scope.averageLongitude = sumLongitude/$scope.length;
-  };
+   $scope.getAverageLongitude = function() {
+     var sumLongitude = _.reduce( $scope.users, function( memory, user) {
+       return memory + user.longitude;
+     }, 0 );
+     if ($scope.geolocation) {
+       $scope.averageLongitude = (sumLongitude + $scope.position.longitude)/$scope.length;
+     } else {
+       $scope.averageLongitude = sumLongitude/$scope.length;
+     }
+   };
 
   $scope.getMidPoint = function() {
     $scope.setLengthOfUsers();
@@ -68,22 +92,28 @@ angular.module("connectusApp")
     $scope.options = {scrollwheel: false};
   };
 
-  $scope.setMidPointMarker = function() {
-    $scope.midPointMarker = [
-      { id: 0,
-        coords: {
-          latitude: $scope.averageLatitude,
-          longitude: $scope.averageLongitude
-        },
-        icon: { url:"http://www.clker.com/cliparts/c/I/g/P/d/h/google-maps-pin-blue-th.png",
-                scaledSize: {
-                  height: 40,
-                  width: 40
-                }
-              },
-        name: "Midpoint"
-      }
-    ];
+  $scope.setGeolocationMarkers = function() {
+      $scope.geolocationMarker = [
+        { id: 0,
+          coords: {
+            latitude: $scope.position.latitude,
+            longitude: $scope.position.longitude
+          },
+          icon: { url:"http://www.clker.com/cliparts/c/I/g/P/d/h/google-maps-pin-blue-th.png",
+                  scaledSize: {
+                    height: 40,
+                    width: 40
+                  }
+                },
+          name: "Your Location"
+        }
+      ];
+    };
+
+  $scope.checkedGeolocation = function () {
+    $scope.geolocation = true;
+    $scope.setGeolocationMarkers();
+
   };
 
   $scope.setUsersMarkers = function() {
@@ -91,7 +121,7 @@ angular.module("connectusApp")
   };
 
   $scope.showMap = function() {
-    $scope.setMidPointMarker();
+    $scope.setGeolocationMarkers();
     $scope.setUsersMarkers();
     $scope.setUsersMarkers();
     $scope.setMap();
@@ -121,7 +151,6 @@ angular.module("connectusApp")
                 }
               },
     }];
-    console.log($scope.selectedPlaceMarker.coords);
   };
 
   $scope.selectPlace = function(place) {
