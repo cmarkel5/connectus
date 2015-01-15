@@ -63,9 +63,42 @@ angular.module("connectusApp")
         latitude: $scope.averageLatitude,
         longitude: $scope.averageLongitude
       },
-      zoom: 10
+      zoom: 11
     };
-    $scope.options = {scrollwheel: false};
+
+    var main_color = '#2d313f',
+    saturation_value= -20,
+    brightness_value= 5;
+
+    //we define here the style of the map
+    var style = [
+    {
+        "featureType": "all",
+        "elementType": "all",
+        "stylers": [
+            {
+                "invert_lightness": true
+            },
+            {
+                "saturation": 10
+            },
+            {
+                "lightness": 30
+            },
+            {
+                "gamma": 0.5
+            },
+            {
+                "hue": "#435158"
+            }
+        ]
+      }];
+        
+     $scope.options = {
+        scrollwheel: false,
+        styles: style
+      };
+  
   };
 
   $scope.setMidPointMarker = function() {
@@ -114,7 +147,7 @@ angular.module("connectusApp")
         id: id,
         name: name,
         coords: coords,
-        icon: { url:"http://www.clker.com/cliparts/r/J/F/7/y/4/placemark-th.png",
+        icon: { url:"http://www.clker.com/cliparts/A/8/Y/w/2/I/white-google-map-pin-th.png",
                 scaledSize: {
                   height: 40,
                   width: 40
