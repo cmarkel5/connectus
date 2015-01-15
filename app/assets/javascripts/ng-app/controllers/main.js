@@ -1,7 +1,7 @@
 angular.module("connectusApp")
 .controller("MainCtrl", 
-            ['$scope', '$log', 'userService', 'placesService','textService', 'uiGmapGoogleMapApi', 
-            function ($scope, $log, userService, placesService, textService, uiGmapGoogleMapApi) {
+            ['$scope', '$rootScope', '$log', 'userService', 'placesService','textService', 'uiGmapGoogleMapApi', 
+            function ($scope, $rootScope, $log, userService, placesService, textService, uiGmapGoogleMapApi) {
 
   uiGmapGoogleMapApi.then(function(/* maps */) {
       // can manipulate the map here.
@@ -21,18 +21,18 @@ angular.module("connectusApp")
     //this line resets the userList so you can update correctly
     var users = $scope.userList;
     //this line filter out for users that were selected upon a submit click
-    $scope.users = _.filter(users, function(user) {
+    $rootScope.users = _.filter(users, function(user) {
       return user.selected === true;
     });
-    return $scope.users;
+    return $rootScope.users;
   };
 
   $scope.setLengthOfUsers = function() {
-    $scope.length = $scope.users.length;
+    $scope.length = $rootScope.users.length;
   };
 
   $scope.getAverageLatitude = function() {
-    var sumLatitude = _.reduce( $scope.users, function( memory, user) {
+    var sumLatitude = _.reduce( $rootScope.users, function( memory, user) {
     return memory + user.latitude;
     }, 0 );
     
@@ -40,7 +40,7 @@ angular.module("connectusApp")
   };  
 
   $scope.getAverageLongitude = function() {
-    var sumLongitude = _.reduce( $scope.users, function( memory, user) {
+    var sumLongitude = _.reduce( $rootScope.users, function( memory, user) {
       return memory + user.longitude;
     }, 0 );
     
@@ -120,13 +120,14 @@ angular.module("connectusApp")
   };
 
   $scope.setUsersMarkers = function() {
-    $scope.markerList =  $scope.users;
+    $rootScope.markerList =  $rootScope.users;
   };
 
   $scope.showMap = function() {
-    $scope.setMap();
     $scope.setMidPointMarker();
     $scope.setUsersMarkers();
+    $scope.setUsersMarkers();
+    $scope.setMap();
   };
 
   $scope.getPlaces = function() {
@@ -159,21 +160,26 @@ angular.module("connectusApp")
   $scope.selectPlace = function(place) {
     $scope.selectedPlace = place;
     $scope.setPlaceMarker();
+    $scope.setUsersMarkers();
+    $scope.showMap();
   };
 
   $scope.clearSelectedPlace = function() {
     $scope.selectedPlace = null;
+    $scope.selectedPlaceMarker = null;
+    $rootScope.markerList = null;
+  
   };
 
   $scope.showPlaces = function() {
     $scope.selectedUsers();
     $scope.getMidPoint();
     $scope.getPlaces();
-    $scope.showMap();
+    $scope.selectedPlace = null;
   };
 
   $scope.textAddress = function(place, address) {
-    textService.textUsers($scope.users, place, address).success(function() {
+    textService.textUsers($rootScope.users, place, address).success(function() {
       alert('Successfully texted group!');
     }).error(function() {
       alert('Something went wrong!');
